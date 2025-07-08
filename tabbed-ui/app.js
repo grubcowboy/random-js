@@ -3,13 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabContainer = document.querySelector('.tab-buttons');
     const tabButtons = document.querySelectorAll('.tab-btn');
 
-    const initializeTabs = () => {
-        tabContent.forEach((tabContent, index) => {
-            tabContent.classList.toggle('hidden', index !== 0);
-        });
-        tabButtons[0].classList.add('active');
-    };
-    initializeTabs();
+    // initialize tabs
+    tabContent.forEach((tabContent, index) => {
+        tabContent.classList.toggle('hidden', index !== 0);
+    });
+    tabButtons[0].classList.add('active');
+
+    // Anonymous Function
+    (function () {
+        console.log('"what the fucks the (anonymous) function" - Drake - Grub Cowboy');
+    })();
+
 
     tabContainer.addEventListener('click', e => {
 
@@ -31,3 +35,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+
