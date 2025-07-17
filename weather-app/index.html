@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strikes Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <img id="weather-logo" src="./assets/strikes-logo.png" alt="Strikes weather app logo">
+        <!-- Search Section -->
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name...">
+            <button id="search-btn">Search</button>
+        </div>
+
+        <!-- Weather Display (initially hidden) -->
+        <div class="weather-card hidden">
+            <h2 id="city-name">--</h2>
+            <div class="weather-icon">
+                <img id="weather-icon" src="./assets/strikes-logo.png" alt="Weather Icon">
+            </div>
+            <p id="temperature">--°C</p>
+            <div class="details">
+                <p id="humidity">Humidity: --%</p>
+                <p id="wind">Wind: -- km/h</p>
+            </div>
+        </div>
+
+        <!-- Error Message (hidden by default) -->
+        <p id="error-msg" class="hidden"></p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
