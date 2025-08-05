@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
-  const [prices, setPrices] = useState({});
+  const [prices, setPrices] = useState({
+    bitcoin: null,
+    ethereum: null
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,40 +19,55 @@ export default function App() {
       }
 
       const data = await response.json();
-      console.log(data.bitcoin.usd);
-      console.log(data.ethereum.usd);
 
       setPrices({
         bitcoin: data.bitcoin.usd,
         ethereum: data.ethereum.usd
       });
-
-      console.log(`set prices: ${setPrices}`);
-
     } catch (err) {
       setError(err.message);
     } finally {
-
       setIsLoading(false);
-
     }
   };
 
-  const fetchWithDelay = async () => {
-    await new Promise(resolve => setTimeout(resolve, 60000));
-    return fetchCryptoPrices();
-  };
-  // FIX INFINITE LOOP
-  fetchWithDelay();
-  // ADD USEEFFECT()
+  useEffect(() => {
+    console.log(`current prices: ${prices.bitcoin} ${prices.ethereum}`);
+  }, [prices]);
+
+  useEffect(() => {
+    fetchCryptoPrices();
+    const intervalId = setInterval(fetchCryptoPrices, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  if (isLoading || !prices.bitcoin || !prices.ethereum) {
+    return (
+      <div className="app">
+
+        <div className="typewriter">
+          <h1>LOADING PRICES...</h1>
+        </div>
+
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="app">
+        <h1 style={{ color: 'red' }}>ERROR: {error}</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="app">
-
-      <div className="typewriter">
-        <h1>WORKING...</h1>
+      <div className="prices">
+        <h1>Crypto Prices</h1>
+        <h2>Bitcoin ${prices.bitcoin.toLocaleString()}</h2>
+        <h2>Ethereum ${prices.ethereum.toLocaleString()}</h2>
       </div>
-
     </div>
   );
 }

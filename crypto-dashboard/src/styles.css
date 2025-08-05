@@ -4,23 +4,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.prices {
+    background-color: lightsteelblue;
+    padding: 1em;
+    padding-bottom: 2em;
 }
 
 .typewriter h1 {
     /* Ensures the text is hidden until animated */
     overflow: hidden;
     /* The blinking cursor */
-    border-right: .15em solid orange;
+    border-right: .15em solid slategray;
     /* Keeps the text on a single line */
     white-space: nowrap;
     /* Centers the text */
     margin: 0 auto;
-    letter-spacing: .05em;
     animation:
         /* Typing animation */
         typing 3.5s steps(30, end) infinite,
         /* Blinking cursor animation */
         blink-caret .5s step-end infinite;
+}
+
+h2 {
+    margin: .2rem;
 }
 
 @keyframes typing {
@@ -41,7 +51,7 @@
     }
 
     50% {
-        border-color: orange
+        border-color: slategray
     }
 
     /* Cursor visible at 50% */
